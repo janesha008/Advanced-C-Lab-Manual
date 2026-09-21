@@ -1,9 +1,13 @@
-EXP NO:1 C PROGRAM FOR ARRAY OF STRUCTURE TO CHECK ELIGIBILITY FOR THE VACCINE.
+# Advanced-C-Lab-Manual
 
-Aim:
+# Module 7
+
+## EXP NO:1 C PROGRAM FOR ARRAY OF STRUCTURE TO CHECK ELIGIBILITY FOR THE VACCINE.
+
+### Aim:
 To write a C program for array of structure to check eligibility for the vaccine person age above 6 years of age.
 
-Algorithm:
+### Algorithm:
 1.	Declare structure eligible with age (integer) and n (character array)
 2.	Declare variable e of type eligible
 3.	Input age and name using scanf, store in e
@@ -14,26 +18,50 @@ Else
 5.	Print details (e.age, e.n)
 6.	Return 0
  
-Program:
+### Program:
+```
+#include <stdio.h>
 
-//type your code here
+struct eligible {
+    int age;
+    char n[50];
+};
 
+int main() {
+    struct eligible e;
 
-Output:
+    printf("Enter name: ");
+    scanf("%s", e.n);
 
-//paste your output here
+    printf("Enter age: ");
+    scanf("%d", &e.age);
 
+    printf("\nName: %s\n", e.n);
+    printf("Age: %d\n", e.age);
 
-Result:
+    if (e.age <= 6)
+        printf("Vaccine Eligibility: No\n");
+    else
+        printf("Vaccine Eligibility: Yes\n");
+
+    return 0;
+}
+```
+### Output:
+
+<img width="346" height="282" alt="image" src="https://github.com/user-attachments/assets/50c21942-e689-4a22-a34c-131a3bf2f80b" />
+
+### Result:
 Thus, the program is verified successfully. 
 
 
 
-EXP NO:2 C PROGRAM FOR PASSING STRUCTURES AS FUNCTION ARGUMENTS AND RETURNING A STRUCTURE FROM A FUNCTION
-Aim:
+## EXP NO:2 C PROGRAM FOR PASSING STRUCTURES AS FUNCTION ARGUMENTS AND RETURNING A STRUCTURE FROM A FUNCTION
+
+### Aim:
 To write a C program for passing structure as function and returning a structure from a function
 
-Algorithm:
+### Algorithm:
 1.	Define structure numbers with members a and b.
 2.	Declare variable n of type numbers.
 3.	Prompt the user to enter values for a and b.
@@ -42,32 +70,50 @@ Algorithm:
 6.	Print the result returned by the add function.
 7.	Return 0
  
-Program:
+### Program:
+```
+#include <stdio.h>
 
-//type your code here
+struct numbers {
+    int a;
+    int b;
+};
+
+struct numbers add(struct numbers n) {
+    n.a = n.a + n.b;
+    return n;
+}
+
+int main() {
+    struct numbers n, result;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &n.a, &n.b);
+
+    result = add(n);
+
+    printf("Sum = %d\n", result.a);
+
+    return 0;
+}
+```
+### Output:
 
 
+<img width="362" height="177" alt="image" src="https://github.com/user-attachments/assets/175723b3-ecbe-4368-aa95-d34ed98a255b" />
 
 
-Output:
-
-
-//paste your output here
-
-
-
-
-Result:
+### Result:
 Thus, the program is verified successfully
 
 
  
-EXP.NO:3 C PROGRAM TO READ A FILE NAME FROM USER AND WRITE THAT FILE USING FOPEN()
+## EXP.NO:3 C PROGRAM TO READ A FILE NAME FROM USER AND WRITE THAT FILE USING FOPEN()
 
-Aim:
+### Aim:
 To write a C program to read a file name from user
 
-Algorithm:
+### Algorithm:
 1.	Include the necessary header file stdio.h.
 2.	Begin the main function.
 3.	Declare a file pointer p.
@@ -84,35 +130,46 @@ Use scanf to input the file name into the name array.
 4.	End the main function.
 5.	Return 0 to indicate successful program execution.
  
-Program:
+### Program:
+```
+#include <stdio.h>
 
-//type your code here
+int main() {
+    FILE *p;
+    char name[50];
+
+    printf("Enter file name: ");
+    scanf("%s", name);
+
+    p = fopen(name, "w");
+
+    if (p == NULL) {
+        printf("File cannot be created\n");
+        return 1;
+    }
+
+    printf("File opened successfully\n");
+
+    fclose(p);
+
+    printf("File closed successfully\n");
+
+    return 0;
+}
+```
+### Output:
 
 
+<img width="392" height="176" alt="image" src="https://github.com/user-attachments/assets/05776780-458b-4e85-b391-0f1ac28c501b" />
 
-
-Output:
-
-
-//paste your output here
-
-
-
-
-
-
-
-
-
-
-
-Result:
+### Result:
 Thus, the program is verified successfully
  
 
 
-EXP NO:4   PROGRAM TO READ A FILE NAME FROM USER, WRITE THAT FILE AND INSERT TEXT IN TO THAT FILE
-Aim:
+## EXP NO:4   PROGRAM TO READ A FILE NAME FROM USER, WRITE THAT FILE AND INSERT TEXT IN TO THAT FILE
+
+### Aim:
 To write a C program to read, a file and insert text in that file
 Algorithm:
 1.	Include the necessary header file stdio.h.
@@ -131,34 +188,59 @@ Use scanf to input the file name into the name array and the number of strings i
 4.	End the main function.
 5.	Return 0 to indicate successful program execution.
  
-Program:
+### Program:
+```
+#include <stdio.h>
 
-//type your code here
+int main() {
+    FILE *p;
+    char name[50], text[100];
+    int num, i;
 
+    printf("Enter file name: ");
+    scanf("%s", name);
 
+    printf("Enter number of strings: ");
+    scanf("%d", &num);
 
+    p = fopen(name, "w");
 
-Output:
+    if (p == NULL) {
+        printf("File cannot be created\n");
+        return 1;
+    }
 
+    printf("File opened successfully\n");
 
-//paste your output here
+    for (i = 0; i < num; i++) {
+        printf("Enter string %d: ", i + 1);
+        scanf(" %[^\n]", text);
+        fputs(text, p);
+        fputs("\n", p);
+    }
 
+    fclose(p);
 
+    printf("Data added successfully\n");
 
+    return 0;
+}
+```
+### Output:
 
+<img width="382" height="195" alt="image" src="https://github.com/user-attachments/assets/08bf2004-0131-4449-9e7b-4084500db591" />
 
-
-Result:
+### Result:
 Thus, the program is verified successfully
 
 
 
-Ex No 5 : C PROGRAM TO DISPLAY STUDENT DETAILS USING STRUCTURE
+## Ex No 5 : C PROGRAM TO DISPLAY STUDENT DETAILS USING STRUCTURE
 
-Aim:
+### Aim:
 The aim of this program is to dynamically allocate memory to store information about multiple subjects (name and marks), input the details for each subject, and then display the stored information. Finally, it frees the allocated memory to prevent memory leaks.
 
-Algorithm:
+### Algorithm:
 1.Input the number of subjects.
 
 2.Read the integer value n from the user, which represents the number of subjects.
@@ -185,22 +267,53 @@ Algorithm:
 
 13.End the program by returning 0.
 
-Program:
+### Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct student {
+    char name[50];
+    int marks;
+};
 
+int main() {
+    struct student *s;
+    int n, i;
 
+    printf("Enter number of students: ");
+    scanf("%d", &n);
 
+    s = (struct student *)malloc(n * sizeof(struct student));
 
-Output:
+    if (s == NULL) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
 
+    for (i = 0; i < n; i++) {
+        printf("\nEnter student %d name: ", i + 1);
+        scanf("%s", s[i].name);
 
-//paste your output here
+        printf("Enter marks: ");
+        scanf("%d", &s[i].marks);
+    }
 
+    printf("\nStudent Details:\n");
 
+    for (i = 0; i < n; i++) {
+        printf("\nName: %s", s[i].name);
+        printf("\nMarks: %d\n", s[i].marks);
+    }
 
+    free(s);
 
+    return 0;
+}
+```
+### Output:
 
+<img width="367" height="511" alt="image" src="https://github.com/user-attachments/assets/892db636-ecc7-4cb4-baa1-9ce19b779f25" />
 
-Result:
+### Result:
 Thus, the program is verified successfully
